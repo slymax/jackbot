@@ -1,0 +1,21 @@
+{
+    "key": "XXXXXXXXXX",
+    "users": [],
+    "store": {
+        "name": "jackbot"
+    },
+    "convert": {
+        "hour": 20,
+        "year": 225,
+        "week": 5,
+        "day": 8
+    },
+    "remind": {
+        "format": "DD.MM.YYYY HH:mm"
+    },
+    "push": {
+        "chat": 123456789,
+        "path": "jackbot",
+        "port": 8006
+    }
+}
