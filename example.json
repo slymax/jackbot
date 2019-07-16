@@ -1,0 +1,28 @@
+{
+    "key": "YOUR_TELEGRAM_API_KEY",
+    "chat": 123456789,
+    "store": {
+        "name": "jackbot"
+    },
+    "convert": {
+        "hour": 20,
+        "year": 225,
+        "week": 5,
+        "day": 8
+    },
+    "remind": {
+        "format": "DD.MM.YYYY HH:mm"
+    },
+    "push": {
+        "path": "jackbot",
+        "port": 3000
+    },
+    "monitor": {
+        "schedule": "0 8 * * *",
+        "sites": [{
+            "url": "https://example.com",
+            "selector": ".example",
+            "keyword": "Keyword"
+        }]
+    }
+}
