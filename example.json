@@ -1,6 +1,6 @@
 {
     "key": "YOUR_TELEGRAM_API_KEY",
-    "chat": 123456789,
+    "user": 123456789,
     "store": {
         "name": "jackbot"
     },
@@ -13,7 +13,7 @@
     "remind": {
         "format": "DD.MM.YYYY HH:mm"
     },
-    "push": {
+    "forward": {
         "path": "jackbot",
         "port": 3000
     },

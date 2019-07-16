@@ -56,7 +56,7 @@ const skills = {
             const content = $(site.selector || "body").text().replace(/\s+/g, " ").trim();
             if (monitors[site.url] && monitors[site.url] !== content) {
                 if (!site.keyword || content.toLowerCase().includes(site.keyword.toLowerCase())) {
-                    bot.telegram.sendMessage(config.chat, "Changes found on " + site.url);
+                    bot.telegram.sendMessage(config.user, "Changes found on " + site.url);
                 }
             }
             monitors[site.url] = content;
@@ -65,7 +65,7 @@ const skills = {
 }
 
 bot.on("message", ctx => {
-    if (config.chat === ctx.chat.id) {
+    if (config.user === ctx.chat.id) {
         if (ctx.message.entities && ctx.message.entities[0].type === "bot_command") {
             commands[ctx.chat.id] = ctx.message.text.substr(1);
         } else if (commands[ctx.chat.id] && skills[commands[ctx.chat.id]]) {
@@ -74,15 +74,15 @@ bot.on("message", ctx => {
     }
 }).startPolling();
 
-app.get(`/${config.push.path}/:text`, (request, response) => {
-    bot.telegram.sendMessage(config.chat, request.params.text);
+app.get(`/${config.forward.path}/:text`, (request, response) => {
+    bot.telegram.sendMessage(config.user, request.params.text);
     response.end();
-}).listen(config.push.port);
+}).listen(config.forward.port);
 
 for (id in reminders.data) {
     const reminder = reminders.data[id];
     schedule.scheduleJob(reminder.date, () => {
-        bot.telegram.sendMessage(config.chat, reminder.text);
+        bot.telegram.sendMessage(config.user, reminder.text);
         if (reminder.once) reminders.del(id);
     });
 }
