@@ -46,7 +46,7 @@ const skills = {
             ctx.reply(reminder.text);
         });
         reminders.set(id, reminder);
-        ctx.reply("Reminder set for " + time);
+        ctx.reply("Reminder set for " + reminder.date);
     },
     monitor: async () => {
         for (site of config.monitor.sites) {
