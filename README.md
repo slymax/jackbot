@@ -6,6 +6,8 @@ In **`/decide`** mode, you can send a list of options (separated by spaces or li
 
 In **`/remind`** mode, you can create reminders. The date has to be surrounded by brackets and must follow the format defined in the configuration file. For recurring reminders, the date has to be in [cron](https://en.wikipedia.org/wiki/Cron) format.
 
+In **`/youtube`** mode, you can extract audio from youtube videos. Send a link to a youtube video and Jackbot will respond with the extracted mp3 file. This feature requires `ffmpeg` to be installed on your system.
+
 Jackbot can also monitor websites for changes. You can add websites you want to watch to the configuration file and optionally, define a css selector if you want to only monitor a specific part of the website. If you want to receive a notification when the website contains a specific keyword, you can also specify an optional keyword in the configuration file.
 
 Jackbot also provides an endpoint that can be used for forwarding requests to your Telegram account. The path and port where Jackbot listens for requests, can be specified in the configuration file.

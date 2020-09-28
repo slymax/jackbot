@@ -2,6 +2,7 @@ const moment = require("moment");
 const config = require("./config");
 const Store = require("data-store");
 const Telegraf = require("telegraf");
+const youtubedl = require("youtube-dl");
 const schedule = require("node-schedule");
 const reminders = new Store(config.store);
 const bot = new Telegraf(config.key);
@@ -9,6 +10,7 @@ const fetch = require("node-fetch");
 const cheerio = require("cheerio");
 const app = require("express")();
 const uuid = require('uuid/v4');
+const fs = require("fs");
 
 const commands = {};
 const monitors = {};
@@ -61,6 +63,15 @@ const skills = {
             }
             monitors[site.url] = content;
         }
+    },
+    youtube: ctx => {
+        youtubedl.getInfo(ctx.message.text.trim(), [], (error, info) => {
+            ctx.reply(`Downloading "${info.title}"`);
+            youtubedl.exec(info.webpage_url, ["-x", "--audio-format", "mp3", "--output", `${info.title}.%(ext)s`], {}, () => {
+                ctx.replyWithAudio({ source: `${info.title}.mp3` });
+                fs.unlinkSync(`./${info.title}.mp3`);
+            });
+        });
     }
 }
 
