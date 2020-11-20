@@ -17,8 +17,9 @@ const monitors = {};
 
 const skills = {
     decide: ctx => {
-        const options = ctx.message.text.split(ctx.message.text.includes("\n") ? "\n" : " ");
-        ctx.reply(options[Math.floor(Math.random() * options.length)]);
+        const text = ctx.message.text;
+        const options = text.split(text.includes("\n") ? "\n" : (text.includes(",") ? "," : " "));
+        ctx.reply(options[Math.floor(Math.random() * options.length)].trim());
     },
     convert: ctx => {
         const hours = ctx.message.text / config.convert.hour;
